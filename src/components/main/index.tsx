@@ -1,8 +1,18 @@
 import { Button, Flex, Heading, useDisclosure } from "@chakra-ui/react";
-import Summary from "../summary/summary";
-import ExpenseView from "../expense-view";
+import Summary from "../summary/summary.tsx";
+import ExpenseView from "../expense-view/index.tsx";
 import { useContext, useEffect } from "react";
-import { GlobalContext } from "../context";
+import { GlobalContext } from "../context/index.tsx";
+import React from "react";
+import { ITransaction } from "../DataTypes/Transaction";
+
+interface MainContextTypes {
+	totalExpense: number;
+	setTotalExpense: (value: number) => void;
+	totalIncome: number;
+	setTotalIncome: (value: number) => void;
+	allTransactions: ITransaction[];
+}
 
 export default function Main() {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -12,16 +22,16 @@ export default function Main() {
 		totalIncome,
 		setTotalIncome,
 		allTransactions,
-	} = useContext(GlobalContext);
+	} = useContext(GlobalContext) as MainContextTypes;
 
 	useEffect(() => {
-		let income = 0;
-		let expense = 0;
+		let income: number = 0;
+		let expense: number = 0;
 
 		allTransactions.forEach((item) => {
 			item.type === "income"
-				? (income = income + parseFloat(item.amount))
-				: (expense = expense + parseFloat(item.amount));
+				? (income = income + Number(item.amount))
+				: (expense = expense + Number(item.amount));
 		});
 
 		setTotalExpense(expense);
@@ -57,7 +67,7 @@ export default function Main() {
 				alignItems={"flex-start"}
 				justifyContent={"space-evenly"}
 				flexDirection={["column", "column", "column", "row", "row"]}
-				gap={'12px'}
+				gap={"12px"}
 			>
 				<ExpenseView
 					type={"income"}

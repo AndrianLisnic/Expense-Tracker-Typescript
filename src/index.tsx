@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import App from "./App.tsx";
+import reportWebVitals from "./reportWebVitals.js";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./theme.js";
-import GlobalState from "./components/context/index.js";
+import GlobalState from "./components/context/index.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<GlobalState>
+	<GlobalState children={undefined}>
 		<ChakraProvider theme={theme}>
 			<App />
 		</ChakraProvider>

@@ -1,8 +1,9 @@
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import TransactionForm from "../add-transaction";
-import TransactionChartSummary from "../chart";
+import TransactionForm from "../add-transaction/index.tsx";
+import TransactionChartSummary from "../chart/index.tsx";
 import { useContext } from "react";
-import { GlobalContext } from "../context";
+import { GlobalContext } from "../context/index.tsx";
+import React from "react";
 
 export default function Summary({ onClose, isOpen }) {
 	const { totalIncome, totalExpense } = useContext(GlobalContext);

@@ -14,9 +14,18 @@ import {
 	RadioGroup,
 } from "@chakra-ui/react";
 import { useContext } from "react";
-import { GlobalContext } from "../context";
+import { GlobalContext } from "../context/index.tsx";
+import React from "react";
 
-export default function TransactionForm({ onClose, isOpen }) {
+interface TransactionFormProps {
+	onClose: () => void;
+	isOpen: boolean;
+}
+
+export default function TransactionForm({
+	onClose,
+	isOpen,
+}: TransactionFormProps) {
 	const { value, setValue, formData, setFormData, handleFormSubmit } =
 		useContext(GlobalContext);
 
@@ -30,7 +39,7 @@ export default function TransactionForm({ onClose, isOpen }) {
 	}
 
 	return (
-		<Modal isOpen={isOpen} onClose={onClose}>
+		<Modal isOpen={isOpen} onClose={onClose} children={undefined}>
 			<form onSubmit={handleSubmit}>
 				<ModalOverlay />
 				<ModalContent>
@@ -55,7 +64,12 @@ export default function TransactionForm({ onClose, isOpen }) {
 								onChange={handleFormChange}
 							></Input>
 						</FormControl>
-						<RadioGroup mt={"5"} value={value} onChange={setValue}>
+						<RadioGroup
+							mt={"5"}
+							value={value}
+							onChange={setValue}
+							children={undefined}
+						>
 							<Radio
 								checked={formData.type === "income"}
 								value="income"
