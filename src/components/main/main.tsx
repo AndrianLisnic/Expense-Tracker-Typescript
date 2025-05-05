@@ -1,10 +1,10 @@
 import { Button, Flex, Heading, useDisclosure } from "@chakra-ui/react";
 import Summary from "../summary/summary.tsx";
-import ExpenseView from "../expense-view/index.tsx";
+import ExpenseView from "../expense-view/expense-view.tsx";
 import { useContext, useEffect } from "react";
-import { GlobalContext } from "../context/index.tsx";
+import { GlobalContext } from "../context/global-state.tsx";
 import React from "react";
-import { ITransaction } from "../DataTypes/Transaction";
+import { ITransaction } from "../DataTypes/Transaction.ts";
 
 interface MainContextTypes {
 	totalExpense: number;
@@ -39,7 +39,13 @@ export default function Main() {
 	}, [allTransactions]);
 
 	return (
-		<Flex textAlign={"center"} flexDirection={"column"} pr={"5"} pl={"5"}>
+		<Flex
+			data-testid="main-component"
+			textAlign={"center"}
+			flexDirection={"column"}
+			pr={"5"}
+			pl={"5"}
+		>
 			<Flex alignItems={"center"} justifyContent={"space-between"} mt={"12"}>
 				<Heading
 					color={"blue.600"}

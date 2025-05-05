@@ -1,8 +1,8 @@
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import TransactionForm from "../add-transaction/index.tsx";
-import TransactionChartSummary from "../chart/index.tsx";
+import TransactionForm from "../add-transaction/add-transaction.tsx";
+import TransactionChartSummary from "../chart/chart.tsx";
 import { useContext } from "react";
-import { GlobalContext } from "../context/index.tsx";
+import { GlobalContext } from "../context/global-state.tsx";
 import React from "react";
 
 export default function Summary({ onClose, isOpen }) {
@@ -10,6 +10,7 @@ export default function Summary({ onClose, isOpen }) {
 
 	return (
 		<Box
+			data-testid="summary-box"
 			p={"6"}
 			border={"1px solid"}
 			borderColor={"gray.100"}
@@ -40,7 +41,12 @@ export default function Summary({ onClose, isOpen }) {
 					// ml={"-20"}
 					mr={"2"}
 				>
-					<Heading size={"md"} mb={"4"} color={"gray.600"}>
+					<Heading
+						data-testid={"balance"}
+						size={"md"}
+						mb={"4"}
+						color={"gray.600"}
+					>
 						Balance is ${totalIncome - totalExpense}
 					</Heading>
 					<Flex
@@ -53,11 +59,15 @@ export default function Summary({ onClose, isOpen }) {
 						borderColor={"gray.100"}
 					>
 						<Flex flexDirection={"column"}>
-							<Heading color={"gray.700"}>$ {totalIncome}</Heading>
+							<Heading data-testid={"total-income"} color={"gray.700"}>
+								$ {totalIncome}
+							</Heading>
 							<Text color={"gray.600"}> Total Income</Text>
 						</Flex>
 						<Flex flexDirection={"column"}>
-							<Heading color={"gray.700"}>$ {totalExpense}</Heading>
+							<Heading data-testid={"total-expense"} color={"gray.700"}>
+								$ {totalExpense}
+							</Heading>
 							<Text color={"gray.600"}> Total Expense</Text>
 						</Flex>
 					</Flex>

@@ -4,6 +4,7 @@ import React from "react";
 export default function ExpenseView({ type, data }) {
 	return (
 		<Box
+			data-testid={`expenseView-${type}`}
 			flex={1}
 			width={"full"}
 			bg={"white"}
@@ -15,12 +16,14 @@ export default function ExpenseView({ type, data }) {
 			borderRadius={"12"}
 		>
 			<Flex justifyContent={"space-between"} alignItems={"center"}>
-				<Heading size={"md"} color={"red.700"}>
+				<Heading data-testid={"expense-heading"} size={"md"} color={"red.700"}>
 					{type === "income" ? "Income" : "Expense"}
 				</Heading>
 			</Flex>
-			{data.map((item) => (
+			{data.map((item, index) => (
 				<Flex
+					key={index}
+					data-testid={"expense-item"}
 					bg={type === "expense" ? "red.50" : "blue.50"}
 					mt={"4"}
 					justifyContent={"space-between"}

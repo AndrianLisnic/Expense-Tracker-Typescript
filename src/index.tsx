@@ -5,7 +5,7 @@ import App from "./App.tsx";
 import reportWebVitals from "./reportWebVitals.js";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./theme.js";
-import GlobalState from "./components/context/index.tsx";
+import GlobalState from "./components/context/context.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

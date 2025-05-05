@@ -1,6 +1,6 @@
 import { Box, Container, Flex } from "@chakra-ui/react";
 import "./App.css";
-import Main from "./components/main/index.tsx";
+import Main from "./components/main/main.tsx";
 import React from "react";
 
 function App() {

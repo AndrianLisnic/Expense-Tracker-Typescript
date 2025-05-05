@@ -14,7 +14,7 @@ import {
 	RadioGroup,
 } from "@chakra-ui/react";
 import { useContext } from "react";
-import { GlobalContext } from "../context/index.tsx";
+import { GlobalContext } from "../context/global-state.tsx";
 import React from "react";
 
 interface TransactionFormProps {
@@ -29,18 +29,18 @@ export default function TransactionForm({
 	const { value, setValue, formData, setFormData, handleFormSubmit } =
 		useContext(GlobalContext);
 
-	function handleFormChange(event) {
+	function handleFormChange(event: React.ChangeEvent<HTMLImageElement>) {
 		setFormData({ ...formData, [event.target.name]: event.target.value });
 	}
 
-	function handleSubmit(event) {
+	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		handleFormSubmit(formData);
 	}
 
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} children={undefined}>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} data-testid={"modal-window"}>
 				<ModalOverlay />
 				<ModalContent>
 					<ModalHeader>Add New Transaction</ModalHeader>
@@ -71,6 +71,7 @@ export default function TransactionForm({
 							children={undefined}
 						>
 							<Radio
+								data-testid={"radio-income"}
 								checked={formData.type === "income"}
 								value="income"
 								mr={"5"}
@@ -81,6 +82,7 @@ export default function TransactionForm({
 								Income
 							</Radio>
 							<Radio
+								data-testid={"radio-expense"}
 								checked={formData.type === "expense"}
 								value="expense"
 								name="type"

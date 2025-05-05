@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import Chart from "react-apexcharts";
+import React from "react";
 
 const options = {
 	labels: ["Expense", "Income"],
